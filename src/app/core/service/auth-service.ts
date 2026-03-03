@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  // Signal para rastrear el estado de autenticación
   isAuthenticated = signal<boolean>(this.checkAuthStatus());
   currentUser = signal<any>(null);
 
@@ -29,19 +28,15 @@ export class AuthService {
    */
   login(email: string, password: string): Promise<boolean> {
     return new Promise((resolve) => {
-      // Simular llamada a API (reemplazar con tu API real)
       setTimeout(() => {
         if (email && password) {
-          // Guardar token simulado
           const token = this.generateToken();
           localStorage.setItem('auth_token', token);
           localStorage.setItem('user_email', email);
 
-          // Actualizar signals
           this.isAuthenticated.set(true);
           this.currentUser.set({ email });
 
-          // Navegar al dashboard
           this.router.navigate(['/dashboard']);
           resolve(true);
         } else {
