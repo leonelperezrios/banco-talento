@@ -1,0 +1,7 @@
+<app-auth-page-layout>
+    <app-signup-form 
+        class="flex flex-col flex-1"
+        [isLoading]="isLoading()"	
+        (submitForm)="onSignUp($event)"
+        />
+</app-auth-page-layout>
