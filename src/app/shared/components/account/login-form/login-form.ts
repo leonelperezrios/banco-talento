@@ -6,6 +6,7 @@ import { Button } from '../../../ui/button/button';
 import { InputField } from '../../form/input/input-field';
 import { Label } from '../../form/label/label';
 import { Checkbox } from '../../form/input/checkbox';
+import { Icon } from '../../../ui/icon/icon';
 
 interface LoginCredentials {
   email: string;
@@ -15,7 +16,7 @@ interface LoginCredentials {
 
 @Component({
   selector: 'app-login-form',
-  imports: [RouterModule, FormsModule, CommonModule, Button, InputField, Label, Checkbox],
+  imports: [RouterModule, FormsModule, CommonModule, Button, InputField, Label, Checkbox, Icon],
   templateUrl: './login-form.html',
   styleUrl: './login-form.css',
 })
