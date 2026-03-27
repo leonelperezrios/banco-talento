@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { Persona } from '../interfaces/persona.interface';
+import { RegistroUsuario } from '../interfaces/person.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { TipoDocumentoGeneral } from '../interfaces/TipoDocumentoGeneral.interface';
+import { TipoDocumentoGeneral } from '../interfaces/general-document-type.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -11,8 +11,8 @@ export class SignupService {
 
     private http = inject(HttpClient);
 
-    signUpUser(persona: Persona){
-        return this.http.post<Persona>(`${environment.apiUrl}/auth/signup`, persona);
+    signUpUser(usuario: RegistroUsuario){
+        return this.http.post<RegistroUsuario>(`${environment.apiUrl}/auth/signup`, usuario);
     }
 
     getDocumentTypes(){

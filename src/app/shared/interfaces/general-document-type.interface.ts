@@ -1,6 +1,6 @@
 export interface TipoDocumentoGeneral{
     id: number;
-    nombre: string;
+    descripcion: string;
     tipoPersona: string;
     abreviatura: string;
 }

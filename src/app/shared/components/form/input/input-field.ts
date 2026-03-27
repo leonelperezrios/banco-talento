@@ -41,7 +41,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       </p>
     }
   </div>`,
-  styles: ``,
+  styleUrl: './input-field.css',
 })
 export class InputField implements ControlValueAccessor {
   @Input() type: string = 'text';
