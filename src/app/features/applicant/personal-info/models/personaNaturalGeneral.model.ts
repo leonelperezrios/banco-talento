@@ -1,0 +1,22 @@
+export interface PersonaNaturalGeneral {
+  idPersonaGeneral: 200907,
+  primerNombre: string,
+  segundoNombre: string,
+  primerApellido: string,
+  segundoApellido: string,
+  sexo: string,
+  libretaMilitar: string,
+  rh: string,
+  distritoMilitar: string,
+  numeroPasaporte: string,
+  otraNacionalidad: string,
+  emailInstitucional: string,
+  ubicacionFisicaHojavida: string,
+  claseLibretaMilitar: string,
+  vive: string,
+  fax: string,
+  fechaVigenciaPasaporte: string,
+  fechaNacimiento: string,
+  registradoPor: string,
+  fechaCambio: string
+}

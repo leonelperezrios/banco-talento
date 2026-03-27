@@ -11,6 +11,7 @@
   "private": true,
   "packageManager": "npm@11.8.0",
   "dependencies": {
+    "@angular/animations": "^21.2.0",
     "@angular/common": "^21.2.0",
     "@angular/compiler": "^21.2.0",
     "@angular/core": "^21.2.0",
@@ -18,9 +19,11 @@
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
     "rxjs": "~7.8.0",
+    "sileo-angular": "file:../../Plantilla/sileo/dist/sileo-angular/sileo-angular-0.1.7.tgz",
     "swiper": "^11.2.10",
     "tslib": "^2.3.0",
-    "zone.js": "^0.16.1"
+    "zone.js": "^0.16.1",
+    "flatpickr": "^4.6.13"
   },
   "devDependencies": {
     "@angular/build": "^21.2.0",

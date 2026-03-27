@@ -1,23 +1,36 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+import { StorageService } from './storage-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  isAuthenticated = signal<boolean>(this.checkAuthStatus());
+  private router = inject(Router);
+  private storageService = inject(StorageService);
+
+  private sessionUpdated = signal<number>(0);
+
+  isAuthenticated = computed(() => {
+    this.sessionUpdated();
+    return this.storageService.hasSession();
+  });
+
   currentUser = signal<any>(null);
 
-  constructor(private router: Router) {}
+
+  private readonly mockDelayMs = environment.auth.mockDelayMs;
+  private readonly loginRedirectUrl = environment.auth.loginRedirectUrl;
+  private readonly logoutRedirectUrl = environment.auth.logoutRedirectUrl;
+
+  constructor() {}
 
   /**
-   * Verifica si hay un token de autenticación en el almacenamiento local
+   * Para actualizar el estado de autenticación
    */
-  private checkAuthStatus(): boolean {
-    if (typeof localStorage !== 'undefined') {
-      return !!localStorage.getItem('auth_token');
-    }
-    return false;
+  private updateSessionState(): void {
+    this.sessionUpdated.update(v => v + 1);
   }
 
   /**
@@ -31,18 +44,21 @@ export class AuthService {
       setTimeout(() => {
         if (email && password) {
           const token = this.generateToken();
-          localStorage.setItem('auth_token', token);
-          localStorage.setItem('user_email', email);
 
-          this.isAuthenticated.set(true);
+          // Guardar en storage
+          this.storageService.setToken(token);
+          this.storageService.setUserEmail(email);
+
+          // Actualizar signals
+          this.updateSessionState();
           this.currentUser.set({ email });
 
-          this.router.navigate(['/dashboard']);
+          this.router.navigate([this.loginRedirectUrl]);
           resolve(true);
         } else {
           resolve(false);
         }
-      }, 500);
+      }, this.mockDelayMs);
     });
   }
 
@@ -50,21 +66,17 @@ export class AuthService {
    * Método de logout
    */
   logout(): void {
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('user_email');
-    this.isAuthenticated.set(false);
+    this.storageService.clearSession();
+    this.updateSessionState();
     this.currentUser.set(null);
-    this.router.navigate(['/login']);
+    this.router.navigate([this.logoutRedirectUrl]);
   }
 
   /**
    * Obtener el token de autenticación
    */
   getToken(): string | null {
-    if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem('auth_token');
-    }
-    return null;
+    return this.storageService.getToken();
   }
 
 

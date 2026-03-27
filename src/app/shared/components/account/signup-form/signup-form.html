@@ -52,16 +52,16 @@
                 <app-label>Usuario</app-label>
                 <app-input-field type="text" placeholder="Usuario" formControlName="usuario" name="usuario" class="form-input"  />
             </div>
-    
+
             <div>
                 <app-label>Contraseña <span class="text-error-500">*</span></app-label>
                 <div class="relative">
                     <app-input-field [type]="showPassword() ? 'text' : 'password'" placeholder="Ingrese su contraseña" formControlName="contrasena" name="contrasena" class="form-input"  />
                     <span (click)="togglePasswordVisibility()" class="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2">
                         @if (showPassword()) {
-                            <app-icon name="eyeClose" size="sm" classes="fill-gray-500 dark:fill-gray-400"/>
+                            <app-icon name="eyeClose" size="sm"/>
                         } @else {
-                            <app-icon name="eyeOpen" size="sm" classes="fill-gray-500 dark:fill-gray-400" />
+                            <app-icon name="eyeOpen" size="sm" />
                         }
                     </span>
                 </div>
@@ -79,8 +79,8 @@
                     </div>
                   }
             </div>
-    
-    
+
+
             <app-button (btnClick)="onSignUp()" className="w-full" size="sm" >
                 @if (isLoading()) {
                     Cargando...
@@ -89,8 +89,7 @@
                 }
             </app-button>
         </form>
-  
-      
+
+
     </div>
   </div>
-  

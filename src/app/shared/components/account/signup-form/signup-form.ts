@@ -39,7 +39,7 @@ export class SignupForm {
     documentoIdentidad: ['', Validators.required],
     sexo: ['', Validators.required],
     usuario: ['', [Validators.required]],
-    contrasena: ['', 
+    contrasena: ['',
       [
         Validators.required,
         Validators.minLength(8),
@@ -51,8 +51,8 @@ export class SignupForm {
 
   submitForm = output<RegistroUsuario>();
 
-  ngOnInit(){ 
-    this.getDocumentTypes(); 
+  ngOnInit(){
+    this.getDocumentTypes();
   }
 
   togglePasswordVisibility() {

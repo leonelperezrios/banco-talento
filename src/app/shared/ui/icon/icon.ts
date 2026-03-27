@@ -5,20 +5,22 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-icon',
+  standalone: true,
   imports: [CommonModule],
   template: `
     <svg
       [ngClass]="computedClasses"
-      viewBox="0 0 20 20"
+      viewBox="0 0 25 25"
       fill="none"
       stroke-width="1.5"
       xmlns="http://www.w3.org/2000/svg"
-      
+
     >
       <g [innerHTML]="safePath"></g>
     </svg>
   `,
 })
+
 export class Icon {
   @Input({ required: true }) name!: AppIconName;
   @Input() classes: string = '';

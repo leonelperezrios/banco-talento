@@ -1,0 +1,86 @@
+<section class="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
+  @if (!isEditing()) {
+    @if (personalInfo(); as info) {
+      <div class="grid gap-4 md:grid-cols-2">
+        <p><strong>Nombres:</strong> {{ info.nombres }}</p>
+        <p><strong>Apellidos:</strong> {{ info.apellidos }}</p>
+        <p><strong>Tipo documento:</strong> {{ info.tipoDocumento }}</p>
+        <p><strong>No. documento:</strong> {{ info.numeroDocumento }}</p>
+        <p><strong>Email:</strong> {{ info.email }}</p>
+        <p><strong>Telefono:</strong> {{ info.telefono }}</p>
+        <p><strong>Fecha nacimiento:</strong> {{ info.fechaNacimiento || 'No registrada' }}</p>
+        <p><strong>Ciudad:</strong> {{ info.ciudad || 'No registrada' }}</p>
+        <p class="md:col-span-2"><strong>Direccion:</strong> {{ info.direccion || 'No registrada' }}</p>
+      </div>
+      <div class="mt-5">
+        <button type="button" class="rounded-md bg-blue-600 px-4 py-2 text-white" (click)="onEdit()">
+          Editar
+        </button>
+      </div>
+    } @else {
+      <p class="text-gray-600 dark:text-gray-300">Aun no tienes informacion personal registrada.</p>
+      <div class="mt-5">
+        <button type="button" class="rounded-md bg-blue-600 px-4 py-2 text-white" (click)="onEdit()">
+          Completar informacion
+        </button>
+      </div>
+    }
+  } @else {
+    <form class="grid gap-4 md:grid-cols-2" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label class="field">
+        <span>Nombres *</span>
+        <input type="text" formControlName="nombres" />
+      </label>
+
+      <label class="field">
+        <span>Apellidos *</span>
+        <input type="text" formControlName="apellidos" />
+      </label>
+
+      <label class="field">
+        <span>Tipo documento *</span>
+        <input type="text" formControlName="tipoDocumento" />
+      </label>
+
+      <label class="field">
+        <span>No. documento *</span>
+        <input type="text" formControlName="numeroDocumento" />
+      </label>
+
+      <label class="field">
+        <span>Email *</span>
+        <input type="email" formControlName="email" />
+      </label>
+
+      <label class="field">
+        <span>Telefono *</span>
+        <input type="text" formControlName="telefono" />
+      </label>
+
+      <label class="field">
+        <span>Fecha nacimiento</span>
+        <input type="date" formControlName="fechaNacimiento" />
+      </label>
+
+      <label class="field">
+        <span>Ciudad</span>
+        <input type="text" formControlName="ciudad" />
+      </label>
+
+      <label class="field md:col-span-2">
+        <span>Direccion</span>
+        <input type="text" formControlName="direccion" />
+      </label>
+
+      <div class="md:col-span-2 flex gap-3 mt-2">
+        <button type="submit" class="rounded-md bg-blue-600 px-4 py-2 text-white" [disabled]="isSaving()">
+          {{ isSaving() ? 'Guardando...' : 'Guardar cambios' }}
+        </button>
+        <button type="button" class="rounded-md border border-gray-300 px-4 py-2" (click)="onCancel()" [disabled]="isSaving()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  }
+</section>
+

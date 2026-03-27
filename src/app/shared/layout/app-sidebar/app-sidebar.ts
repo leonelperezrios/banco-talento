@@ -26,13 +26,15 @@ export class AppSidebar {
     {
       icon: 'userCircle',
       name: 'Aspirante',
-      subItems: [{ name: 'Información personal', path: '/' }],
+      subItems: [
+        { name: 'Informacion personal', path: '/dashboard/aspirante/informacion-personal' },
+      ],
     },
     {
       icon: 'briefcase',
       name: 'Ofertas publicas',
       path: '/ofertas',
-    }
+    },
   ];
   // Others nav items
   othersItems: NavItem[] = [];

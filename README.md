@@ -48,6 +48,21 @@ ng test
 
 For end-to-end (e2e) testing, run:
 
+## Configuración de Ambientes
+
+El proyecto maneja configuración por ambiente (desarrollo/producción) usando `environment.ts`.
+
+### Comandos por ambiente
+
+```bash
+# Desarrollo (usa environment.development.ts)
+ng serve --configuration development
+
+# Producción (usa environment.production.ts)
+ng build --configuration production
+```
+
+
 ```bash
 ng e2e
 ```
@@ -57,3 +72,5 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
